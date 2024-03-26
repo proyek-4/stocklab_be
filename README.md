@@ -1,3 +1,23 @@
+##A. Migration:
+Step 1 : php artisan migrate --path=database/migrations/*/
+
+##B. Seeding:
+Step 1 : php artisan db:seed
+
+##D. Migration Ulang (jika diperlukan):
+Step 1 : php artisan migrate:fresh --path=database/migrations/*/
+
+##C. Connect Storage ke Public
+Step 1 : php artisan storage:link
+
+##E. Konfigurasi php.ini (lokasi: C:/tools/php82/php.ini)
+hapus tanda (;) di:
+1. extension=fileinfo
+2. extension=gd
+3. extension=pgsql
+4. extension=pdo_pgsql
+5. extension=zip
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
