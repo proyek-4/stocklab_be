@@ -1,16 +1,16 @@
-##A. Migration:
+## A. Migration:
 Step 1 : php artisan migrate --path=database/migrations/*/
 
-##B. Seeding:
+## B. Seeding:
 Step 1 : php artisan db:seed
 
-##D. Migration Ulang (jika diperlukan):
+## D. Migration Ulang (jika diperlukan):
 Step 1 : php artisan migrate:fresh --path=database/migrations/*/
 
-##C. Connect Storage ke Public
+## C. Connect Storage ke Public
 Step 1 : php artisan storage:link
 
-##E. Konfigurasi php.ini (lokasi: C:/tools/php82/php.ini)
+## E. Konfigurasi php.ini (lokasi: C:/tools/php82/php.ini)
 hapus tanda (;) di:
 1. extension=fileinfo
 2. extension=gd
