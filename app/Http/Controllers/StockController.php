@@ -35,7 +35,25 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->validate([
+            'name' => 'required',
+            'price' => 'required|numeric',
+            'quantity' => 'required|numeric',
+            'description' => 'sometimes',
+            'image' => 'sometimes',
+        ]);
+
+        $stock = new Stock();
+        $stock->name = $input['name'];
+        $stock->price = $input['price'];
+        $stock->quantity = $input['quantity'];
+        $stock->description = $input['description'];
+        $stock->image = 'default.png';
+        $stock->save();
+        return response()->json([
+            'Data' => $stock,
+            'response' => 200
+        ]);
     }
 
     /**
