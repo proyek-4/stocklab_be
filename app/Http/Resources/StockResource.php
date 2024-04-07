@@ -20,6 +20,7 @@ class StockResource extends JsonResource
             'name' => $this->name,
             'price' => $this->price,
             'quantity' => $this->quantity,
+            'date' => $this->date,
             'image' => Storage::url('public/stock/' . $this->image),
             'description' => $this->description,
         ];

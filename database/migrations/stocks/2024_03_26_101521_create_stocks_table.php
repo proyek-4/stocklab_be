@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigInteger('price');
             $table->bigInteger('quantity');
             $table->text('description')->nullable();
+            $table->date('date');
             $table->string('image');
             $table->timestampsTz();
         });
