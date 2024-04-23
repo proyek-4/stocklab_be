@@ -11,3 +11,4 @@ use App\Http\Controllers\StockController;
 //TemplateController
 Route::apiResource('stocks', StockController::class)->only(['index', 'show', 'destroy']);
 Route::post('/stocks/update/{id}', [StockController::class, 'update'] );
+Route::get('/stocks/edit/{id}', [StockController::class, 'edit'] );

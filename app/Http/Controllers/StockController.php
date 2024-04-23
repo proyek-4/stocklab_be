@@ -80,7 +80,21 @@ class StockController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $stock = Stock::find($id);
+    
+        if (!$stock) {
+            return response()->json([
+                'message' => 'Stock Not Found',
+                'status' => 404
+            ]);
+        }
+    
+        $resource = new StockResource($stock);
+    
+        return response()->json([
+            'data' => $resource,
+            'response' => 200
+        ]);
     }
 
     /**
@@ -131,6 +145,25 @@ class StockController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $stock = Stock::find($id);
+    
+        if (!$stock) {
+            return response()->json([
+                'message' => 'Stock Not Found',
+                'status' => 404
+            ]);
+        }
+    
+        // Delete associated image if exists
+        if ($stock->image && Storage::exists('public/stock/' . $stock->image)) {
+            Storage::delete('public/stock/' . $stock->image);
+        }
+    
+        $stock->delete();
+    
+        return response()->json([
+            'message' => 'Stock berhasil dihapus',
+            'response' => 200
+        ]);
     }
 }
