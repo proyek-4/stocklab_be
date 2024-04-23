@@ -9,4 +9,5 @@ use App\Http\Controllers\StockController;
 // Route::post('/login', [LoginController::class,'login']);
 
 //TemplateController
-Route::apiResource('stocks', StockController::class);
+Route::apiResource('stocks', StockController::class)->only(['index', 'show', 'destroy']);
+Route::post('/stocks/update/{id}', [StockController::class, 'update'] );
