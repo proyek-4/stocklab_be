@@ -7,7 +7,7 @@ use App\Models\Stock;
 use App\Http\Resources\StockResource;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Intervention\Image\Image as Image;
+use Intervention\Image\Facades\Image;
 
 class StockController extends Controller
 {
@@ -16,7 +16,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        $data = Stock::all();
+        $data = Stock::orderBy('name')->get();
         $resource = StockResource::collection($data);
 
         return response()->json([
@@ -48,9 +48,12 @@ class StockController extends Controller
         ]);
 
         $imageName = 'default.png';
-        if ($image = $request->file('image')) {
-            $imageName = Str::random(10) . date('Ymd') . '.' . $image->extension();
-            Storage::put('public/stock/' . $imageName, file_get_contents($image));
+        if ($request->hasFile('image')) {
+            $imageName = Str::random(10) . date('Ymd') . '.webp';
+            $webpImageData = Image::make($request->image);
+            $webpImageData->encode('webp');
+            $webpImageData->resize(200, 250);
+            Storage::put('public/stock/' . $imageName, (string) $webpImageData);
         }
         
         $stock = new Stock();
@@ -72,7 +75,13 @@ class StockController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = Stock::find($id);
+        $resource = new StockResource($data);
+
+        return response()->json([
+            'data' => $resource,
+            'response' => 200
+        ]);
     }
 
     /**
@@ -120,10 +129,13 @@ class StockController extends Controller
         }
 
         $imageName = $dataStock->image;
-        if ($image = $request->file('image')) {
-            Storage::delete('public/stock/'. $dataStock->image);
-            $imageName = Str::random(10) . date('Ymd') . '.' . $image->extension();
-            Storage::put('public/stock/' . $imageName, file_get_contents($image));
+        if ($request->hasFile('image')) {
+            $imageName != 'default.png' ? Storage::delete('public/stock/'. $dataStock->image) : null;
+            $imageName = Str::random(10) . date('Ymd') . '.webp';
+            $webpImageData = Image::make($request->image);
+            $webpImageData->encode('webp');
+            $webpImageData->resize(200, 250);
+            Storage::put('public/stock/' . $imageName, (string) $webpImageData);
         }
         
         $dataStock->name = $input['name'];
@@ -156,7 +168,7 @@ class StockController extends Controller
     
         // Delete associated image if exists
         if ($stock->image && Storage::exists('public/stock/' . $stock->image)) {
-            Storage::delete('public/stock/' . $stock->image);
+            $stock->image != 'default.png' ? Storage::delete('public/stock/' . $stock->image) : null;
         }
     
         $stock->delete();
