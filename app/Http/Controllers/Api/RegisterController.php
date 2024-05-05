@@ -21,19 +21,25 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(), [
             'name'      => 'required',
             'email'     => 'required|email|unique:users',
-            'password'  => 'required|min:8|confirmed'
+            'password'  => 'required|min:8|confirmed',
+            'username'  => 'required|alpha_num|min:3',
         ]);
 
         //if validation fails
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            return response()->json([
+                'message' => 'Validation Failed',
+                'errors' => $validator->errors(), 
+                'response' => 422
+            ]);
         }
 
         //create user
         $user = User::create([
             'name'      => $request->name,
             'email'     => $request->email,
-            'password'  => bcrypt($request->password)
+            'password'  => bcrypt($request->password),
+            'role_id'   => 2,
         ]);
 
         //return response JSON user is created
@@ -41,12 +47,14 @@ class RegisterController extends Controller
             return response()->json([
                 'success' => true,
                 'user'    => $user,
-            ], 201);
+                'response' => 200,
+            ]);
         }
 
         //return JSON process insert failed 
         return response()->json([
             'success' => false,
-        ], 409);
+            'response' => 400,
+        ]);
     }
 }
