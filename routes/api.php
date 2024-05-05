@@ -8,7 +8,6 @@ use App\Http\Controllers\StockController;
 // Route::apiResource('registers', RegisterController::class)->only('store');
 // Route::post('/login', [LoginController::class,'login']);
 
-//TemplateController
-Route::apiResource('stocks', StockController::class)->only(['index', 'show', 'destroy']);
+Route::apiResource('stocks', StockController::class)->only(['index', 'show', 'destroy', 'store']);
 Route::post('/stocks/update/{id}', [StockController::class, 'update'] );
 Route::get('/stocks/edit/{id}', [StockController::class, 'edit'] );
