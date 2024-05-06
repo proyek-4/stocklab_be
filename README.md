@@ -1,11 +1,11 @@
 ## A. Migration:
-Step 1 : php artisan migrate --path=database/migrations/*/
+Step 1 : php artisan migrate
 
 ## B. Seeding:
 Step 1 : php artisan db:seed
 
 ## D. Migration Ulang (jika diperlukan):
-Step 1 : php artisan migrate:fresh --path=database/migrations/*/
+Step 1 : php artisan migrate:fresh
 
 ## C. Connect Storage ke Public
 Step 1 : php artisan storage:link
