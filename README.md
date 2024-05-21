@@ -1,7 +1,7 @@
-##Anggota : 
-###Ketua : Alfien Sukma Prawira
-###Anggota 1 : Adrian Eka Saputra
-###Anggota 2 : Aqila Ghifari Wandana
+## Anggota : 
+### Ketua : Alfien Sukma Prawira
+### Anggota 1 : Adrian Eka Saputra
+### Anggota 2 : Aqila Ghifari Wandana
 
 ## A. Migration:
 Step 1 : php artisan migrate
