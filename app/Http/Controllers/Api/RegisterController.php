@@ -29,7 +29,7 @@ class RegisterController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'message' => 'Validation Failed',
-                'errors' => $validator->errors(), 
+                'errors' => $validator->errors(),
                 'response' => 422
             ]);
         }
@@ -38,6 +38,7 @@ class RegisterController extends Controller
         $user = User::create([
             'name'      => $request->name,
             'email'     => $request->email,
+            'username'  => $request->username,
             'password'  => bcrypt($request->password),
             'role_id'   => 2,
         ]);

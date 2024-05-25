@@ -13,7 +13,7 @@ class WarehouseSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('warehouses')->truncate();
+        //DB::table('warehouses')->truncate();
         DB::table('warehouses')->insert([
             [
                 'name' => 'Gudang 1',

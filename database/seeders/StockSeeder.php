@@ -13,7 +13,7 @@ class StockSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('stocks')->truncate();
+        //DB::table('stocks')->truncate();
         DB::table('stocks')->insert([
             [
                 'name' => 'Accu',
