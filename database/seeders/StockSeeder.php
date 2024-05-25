@@ -21,7 +21,8 @@ class StockSeeder extends Seeder
                 'quantity' => 10,
                 'date' => '2024-03-30',
                 'image' => 'default.png',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit velit, vestibulum quis euismod vitae, bibendum at nisi. Cras vitae suscipit ligula.'
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit velit, vestibulum quis euismod vitae, bibendum at nisi. Cras vitae suscipit ligula.',
+                'warehouse_id' => 1,
             ],
             [
                 'name' => 'Oli',
@@ -29,7 +30,8 @@ class StockSeeder extends Seeder
                 'quantity' => 20,
                 'date' => '2024-03-30',
                 'image' => 'default.png',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit velit, vestibulum quis euismod vitae, bibendum at nisi. Cras vitae suscipit ligula.'
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit velit, vestibulum quis euismod vitae, bibendum at nisi. Cras vitae suscipit ligula.',
+                'warehouse_id' => 1,
             ],
             [
                 'name' => 'Radiator',
@@ -37,7 +39,8 @@ class StockSeeder extends Seeder
                 'quantity' => 30,
                 'date' => '2024-03-30',
                 'image' => 'default.png',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit velit, vestibulum quis euismod vitae, bibendum at nisi. Cras vitae suscipit ligula.'
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit velit, vestibulum quis euismod vitae, bibendum at nisi. Cras vitae suscipit ligula.',
+                'warehouse_id' => 1,
             ],
             [
                 'name' => 'Ban',
@@ -45,7 +48,8 @@ class StockSeeder extends Seeder
                 'quantity' => 40,
                 'date' => '2024-03-30',
                 'image' => 'default.png',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit velit, vestibulum quis euismod vitae, bibendum at nisi. Cras vitae suscipit ligula.'
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit velit, vestibulum quis euismod vitae, bibendum at nisi. Cras vitae suscipit ligula.',
+                'warehouse_id' => 1,
             ],
         ]);
     }

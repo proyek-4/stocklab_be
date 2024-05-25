@@ -16,3 +16,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/logout', LogoutController::class)->name('logout');
+
+Route::apiResource('stocks', StockController::class)->only(['index', 'show', 'destroy', 'store']);
+Route::post('/stocks/update/{id}', [StockController::class, 'update']);
+Route::get('/stocks/edit/{id}', [StockController::class, 'edit']);
