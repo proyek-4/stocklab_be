@@ -19,6 +19,10 @@ class WarehouseSeeder extends Seeder
                 'name' => 'Gudang 1',
                 'user_id' => 1,
             ],
+            [
+                'name' => 'Gudang 2',
+                'user_id' => 1,
+            ],
         ]);
     }
 }

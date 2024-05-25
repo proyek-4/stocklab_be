@@ -12,7 +12,7 @@ class Warehouse extends Model
     protected $fillable = [
         'name',
         'location',
-        'user_id' // Menambahkan user_id ke fillable
+        'user_id'
     ];
 
     public function stocks()

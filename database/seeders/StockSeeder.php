@@ -51,6 +51,24 @@ class StockSeeder extends Seeder
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit velit, vestibulum quis euismod vitae, bibendum at nisi. Cras vitae suscipit ligula.',
                 'warehouse_id' => 1,
             ],
+            [
+                'name' => 'Accu',
+                'price' => 20000,
+                'quantity' => 10,
+                'date' => '2024-03-30',
+                'image' => 'default.png',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit velit, vestibulum quis euismod vitae, bibendum at nisi. Cras vitae suscipit ligula.',
+                'warehouse_id' => 2,
+            ],
+            [
+                'name' => 'Oli',
+                'price' => 30000,
+                'quantity' => 20,
+                'date' => '2024-03-30',
+                'image' => 'default.png',
+                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit velit, vestibulum quis euismod vitae, bibendum at nisi. Cras vitae suscipit ligula.',
+                'warehouse_id' => 2,
+            ],
         ]);
     }
 }

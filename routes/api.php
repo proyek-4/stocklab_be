@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
 use App\Http\Controllers\RecordController;
+use App\Http\Controllers\WarehouseController;
 
 //Register dan Login
 // Route::apiResource('registers', RegisterController::class)->only('store');
@@ -24,3 +25,6 @@ Route::get('/stocks/edit/{id}', [StockController::class, 'edit']);
 
 Route::get('records', [RecordController::class, 'index']);
 Route::get('records/{id}', [RecordController::class, 'show']);
+
+Route::get('warehouses', [WarehouseController::class, 'index']);
+Route::get('warehouses/{id}', [WarehouseController::class, 'show']);
