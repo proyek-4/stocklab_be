@@ -33,6 +33,15 @@ class RecordSeeder extends Seeder
                 'kredit' => 20000,
                 'saldo' => 20000,
             ],
+            [
+                'stock_id' => 2,
+                'name' => 'Oli',
+                'quantity' => 5,
+                'date' => '2024-03-30',
+                'debit' => 0,
+                'kredit' => 30000,
+                'saldo' => 30000,
+            ],
         ]);
     }
 }

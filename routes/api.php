@@ -6,6 +6,7 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
+use App\Http\Controllers\RecordController;
 
 //Register dan Login
 // Route::apiResource('registers', RegisterController::class)->only('store');
@@ -20,3 +21,6 @@ Route::post('/logout', LogoutController::class)->name('logout');
 Route::apiResource('stocks', StockController::class)->only(['index', 'show', 'destroy', 'store']);
 Route::post('/stocks/update/{id}', [StockController::class, 'update']);
 Route::get('/stocks/edit/{id}', [StockController::class, 'edit']);
+
+Route::get('records', [RecordController::class, 'index']);
+Route::get('records/{id}', [RecordController::class, 'show']);
