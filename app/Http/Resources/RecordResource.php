@@ -17,13 +17,12 @@ class RecordResource extends JsonResource
         return [
             'id' => $this->id,
             'stock_id' => $this->stock_id,
+            'name' => $this->name,
             'quantity' => $this->quantity,
             'date' => $this->date,
             'debit' => $this->debit,
             'kredit' => $this->kredit,
             'saldo' => $this->saldo,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ];
     }
 }
