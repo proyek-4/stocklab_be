@@ -32,3 +32,6 @@ Route::delete('records/{id}', [RecordController::class, 'destroy']);
 
 Route::get('warehouses', [WarehouseController::class, 'index']);
 Route::get('warehouses/{id}', [WarehouseController::class, 'show']);
+Route::post('warehouses', [WarehouseController::class, 'store']);
+Route::post('warehouses/update/{id}', [WarehouseController::class, 'update']);
+Route::delete('warehouses/{id}', [WarehouseController::class, 'destroy']);
