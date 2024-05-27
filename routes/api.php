@@ -23,8 +23,12 @@ Route::apiResource('stocks', StockController::class)->only(['index', 'show', 'de
 Route::post('/stocks/update/{id}', [StockController::class, 'update']);
 Route::get('/stocks/edit/{id}', [StockController::class, 'edit']);
 
+
 Route::get('records', [RecordController::class, 'index']);
 Route::get('records/{id}', [RecordController::class, 'show']);
+Route::post('records', [RecordController::class, 'store']);
+Route::post('records/update/{id}', [RecordController::class, 'update']);
+Route::delete('records/{id}', [RecordController::class, 'destroy']);
 
 Route::get('warehouses', [WarehouseController::class, 'index']);
 Route::get('warehouses/{id}', [WarehouseController::class, 'show']);

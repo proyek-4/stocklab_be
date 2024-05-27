@@ -16,7 +16,8 @@ class Record extends Model
         'date',
         'debit',
         'kredit',
-        'saldo'
+        'saldo',
+        'record_type'
     ];
 
     public function stock()

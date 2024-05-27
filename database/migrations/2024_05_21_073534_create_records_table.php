@@ -20,6 +20,7 @@ return new class extends Migration
             $table->double('debit')->nullable();
             $table->double('kredit')->nullable();
             $table->double('saldo')->nullable();
+            $table->string('record_type');
             $table->timestampsTz();
         });
     }

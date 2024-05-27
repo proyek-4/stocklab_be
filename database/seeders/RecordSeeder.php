@@ -13,7 +13,8 @@ class RecordSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('records')->truncate();
+        DB::table('records')->delete();
+
         DB::table('records')->insert([
             [
                 'stock_id' => 1,
@@ -23,6 +24,7 @@ class RecordSeeder extends Seeder
                 'debit' => 40000,
                 'kredit' => 0,
                 'saldo' => 40000,
+                'record_type' => 'out', // Barang keluar
             ],
             [
                 'stock_id' => 1,
@@ -31,7 +33,8 @@ class RecordSeeder extends Seeder
                 'date' => '2024-03-30',
                 'debit' => 0,
                 'kredit' => 20000,
-                'saldo' => 20000,
+                'saldo' => -20000,
+                'record_type' => 'in', // Barang masuk
             ],
             [
                 'stock_id' => 2,
@@ -39,8 +42,9 @@ class RecordSeeder extends Seeder
                 'quantity' => 5,
                 'date' => '2024-03-30',
                 'debit' => 0,
-                'kredit' => 30000,
-                'saldo' => 30000,
+                'kredit' => 150000, // 5 * 30000
+                'saldo' => -150000,
+                'record_type' => 'in', // Barang masuk
             ],
         ]);
     }
