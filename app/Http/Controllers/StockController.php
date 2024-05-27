@@ -41,10 +41,12 @@ class StockController extends Controller
         $input = $request->validate([
             'name' => 'required',
             'price' => 'required|numeric',
+            'cost' => 'required|numeric', // Tambahkan validasi untuk cost
             'quantity' => 'required|numeric',
             'description' => 'sometimes',
             'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
             'date' => 'sometimes',
+            'warehouse_id' => 'required|exists:warehouses,id',
         ]);
 
         $imageName = 'default.png';
@@ -55,14 +57,16 @@ class StockController extends Controller
             $webpImageData->resize(200, 250);
             Storage::put('public/stock/' . $imageName, (string) $webpImageData);
         }
-        
+
         $stock = new Stock();
         $stock->name = $input['name'];
         $stock->price = $input['price'];
+        $stock->cost = $input['cost']; // Simpan cost
         $stock->quantity = $input['quantity'];
-        $stock->description = $input['description'];
-        $stock->date = $input['date'];
+        $stock->description = $input['description'] ?? null;
+        $stock->date = $input['date'] ?? null;
         $stock->image = $imageName;
+        $stock->warehouse_id = $input['warehouse_id'];
         $stock->save();
         return response()->json([
             'data' => $stock,
@@ -76,6 +80,12 @@ class StockController extends Controller
     public function show(string $id)
     {
         $data = Stock::find($id);
+        if (!$data) {
+            return response()->json([
+                'message' => 'Stock Not Found',
+                'status' => 404
+            ], 404);
+        }
         $resource = new StockResource($data);
 
         return response()->json([
@@ -90,16 +100,16 @@ class StockController extends Controller
     public function edit(string $id)
     {
         $stock = Stock::find($id);
-    
+
         if (!$stock) {
             return response()->json([
                 'message' => 'Stock Not Found',
                 'status' => 404
-            ]);
+            ], 404);
         }
-    
+
         $resource = new StockResource($stock);
-    
+
         return response()->json([
             'data' => $resource,
             'response' => 200
@@ -114,36 +124,40 @@ class StockController extends Controller
         $input = $request->validate([
             'name' => 'required',
             'price' => 'required|numeric',
+            'cost' => 'required|numeric', // Tambahkan validasi untuk cost
             'quantity' => 'required|numeric',
             'description' => 'sometimes',
             'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
             'date' => 'sometimes',
+            'warehouse_id' => 'required|exists:warehouses,id',
         ]);
 
         $dataStock = Stock::find($id);
-        if (!$dataStock){
+        if (!$dataStock) {
             return response()->json([
                 'message' => 'Stock Not Found',
                 'status' => 404
-            ]);
+            ], 404);
         }
 
         $imageName = $dataStock->image;
         if ($request->hasFile('image')) {
-            $imageName != 'default.png' ? Storage::delete('public/stock/'. $dataStock->image) : null;
+            $imageName != 'default.png' ? Storage::delete('public/stock/' . $dataStock->image) : null;
             $imageName = Str::random(10) . date('Ymd') . '.webp';
             $webpImageData = Image::make($request->image);
             $webpImageData->encode('webp');
             $webpImageData->resize(200, 250);
             Storage::put('public/stock/' . $imageName, (string) $webpImageData);
         }
-        
+
         $dataStock->name = $input['name'];
         $dataStock->price = $input['price'];
+        $dataStock->cost = $input['cost']; // Simpan cost
         $dataStock->quantity = $input['quantity'];
-        $dataStock->description = $input['description'];
-        $dataStock->date = $input['date'];
+        $dataStock->description = $input['description'] ?? null;
+        $dataStock->date = $input['date'] ?? null;
         $dataStock->image = $imageName;
+        $dataStock->warehouse_id = $input['warehouse_id'];
         $dataStock->save();
         return response()->json([
             'message' => 'Stok berhasil diupdate',
@@ -158,21 +172,21 @@ class StockController extends Controller
     public function destroy(string $id)
     {
         $stock = Stock::find($id);
-    
+
         if (!$stock) {
             return response()->json([
                 'message' => 'Stock Not Found',
                 'status' => 404
-            ]);
+            ], 404);
         }
-    
+
         // Delete associated image if exists
         if ($stock->image && Storage::exists('public/stock/' . $stock->image)) {
             $stock->image != 'default.png' ? Storage::delete('public/stock/' . $stock->image) : null;
         }
-    
+
         $stock->delete();
-    
+
         return response()->json([
             'message' => 'Stock berhasil dihapus',
             'response' => 200

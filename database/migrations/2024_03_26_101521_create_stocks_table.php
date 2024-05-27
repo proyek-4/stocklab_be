@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('price');
+            $table->bigInteger('price'); // Harga jual
+            $table->bigInteger('cost');  // Harga beli
             $table->bigInteger('quantity');
             $table->text('description')->nullable();
             $table->date('date');
