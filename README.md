@@ -3,19 +3,22 @@
 ### Anggota 1 : Adrian Eka Saputra
 ### Anggota 2 : Aqila Ghifari Wandana
 
-## A. Migration:
+## A. Migration (perlu):
 Step 1 : php artisan migrate
 
-## B. Seeding:
+## B. Seeding (perlu):
 Step 1 : php artisan db:seed
 
-## D. Migration Ulang (jika diperlukan):
+## C. Migration Ulang (jika diperlukan):
 Step 1 : php artisan migrate:fresh
 
-## C. Connect Storage ke Public
+## D. Connect Storage ke Public (perlu):
 Step 1 : php artisan storage:link
 
-## E. Konfigurasi php.ini (lokasi: C:/tools/php82/php.ini)
+## E. Autentikasi JWT (perlu):
+Step 1 : php artisan jwt:secret
+
+## F. Konfigurasi php.ini (lokasi: C:/tools/php82/php.ini)
 hapus tanda (;) di:
 1. extension=fileinfo
 2. extension=gd
