@@ -42,12 +42,15 @@ class RecordController extends Controller
             $record->debit = 0;
             $record->kredit = $stock->cost * $input['quantity'];
             $record->saldo = $record->kredit;
+            $stock->quantity += $input['quantity'];
         } else {
             $record->debit = $stock->price * $input['quantity'];
             $record->kredit = $stock->cost * $input['quantity'];
             $record->saldo = $record->debit - $record->kredit;
+            $stock->quantity -= $input['quantity'];
         }
-
+        
+        $stock->save();
         $record->save();
         return new RecordResource($record);
     }
